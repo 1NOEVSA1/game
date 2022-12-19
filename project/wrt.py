@@ -61,7 +61,7 @@ if __name__ == '__main__':
 
     clock =pygame.time.Clock()
 
-    # al_mario = pygame.transform.scale(gg, (gg.get_width() // 4, gg.get_height() // 4))
+    # al_mario = pygame.transform.scale(gg, (gg.get_width() // 4, gg.get_height() // 4)) 12
     grass = pygame.image.load("resours/grass.png").convert()
     bg_surf = pygame.transform.scale(grass, (grass.get_width() // 35, grass.get_height() // 35))
 

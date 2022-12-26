@@ -10,21 +10,21 @@ window = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 
 pygame.display.set_caption('Flappy bird')
-pygame.display.set_icon(pygame.image.load('images\icon.png'))
+pygame.display.set_icon(pygame.image.load('icon.png'))
 
 font1 = pygame.font.Font(None, 35)
 font2 = pygame.font.Font(None, 80)
 
-imgBG = pygame.image.load('images/background.png')
-imgBird = pygame.image.load('images/bird.png')
-imgPT = pygame.image.load('images/pipe_top.png')
-imgPB = pygame.image.load('images/pipe_bottom.png')
+imgBG = pygame.image.load('background.png')
+imgBird = pygame.image.load('bird.png')
+imgPT = pygame.image.load('pipe_top.png')
+imgPB = pygame.image.load('pipe_bottom.png')
 
-pygame.mixer.music.load('sounds/music.mp3')
+pygame.mixer.music.load('music.mp3')
 pygame.mixer.music.set_volume(0.1)
 pygame.mixer.music.play(-1)
 
-sndFall = pygame.mixer.Sound('sounds/fall.wav')
+sndFall = pygame.mixer.Sound('fall.wav')
 
 py, sy, ay = HEIGHT // 2, 0, 0
 player = pygame.Rect(WIDTH // 3, py, 34, 24)

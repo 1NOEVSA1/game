@@ -736,12 +736,12 @@ while running:
                     sizescreen()
             elif map[player_y][player_x - 1] == 'b' or map[player_y][player_x + 1] == 'b' or \
                     map[player_y - 1][player_x] == 'b' or map[player_y + 1][player_x] == 'b':
-                if int(BD('flappy bird')) > 50:
+                if int(BD('flappy bird')) > 30:
                     start_screen2(True)
                     sizescreen()
             elif map[player_y][player_x - 1] == 'g' or map[player_y][player_x + 1] == 'g' or \
                     map[player_y - 1][player_x] == 'g' or map[player_y + 1][player_x] == 'g':
-                if int(BD('flappy bird')) <= 50:
+                if int(BD('flappy bird')) <= 30:
                     q = True
                     story_screen2()
     pygame.time.delay(20)

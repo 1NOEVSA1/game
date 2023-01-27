@@ -579,7 +579,7 @@ def start_screen2(q):
             pygame.draw.rect(screen, (240, 240, 240), (0, 0, 1200, 450))
             score = display_score(a)
             if q:
-                if score == 50:
+                if score == 10:
                     if BD('dino') < score:
                         x = 'data/game.sqlite'
                         con = sqlite3.connect(x)

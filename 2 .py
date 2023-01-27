@@ -6,12 +6,12 @@ import sqlite3
 
 pygame.init()
 # size = width, height = 800, 600
-# значения выставленные ниже, размеры моего экрана, сделал это для удобства
+# Р·РЅР°С‡РµРЅРёСЏ РІС‹СЃС‚Р°РІР»РµРЅРЅС‹Рµ РЅРёР¶Рµ, СЂР°Р·РјРµСЂС‹ РјРѕРµРіРѕ СЌРєСЂР°РЅР°, СЃРґРµР»Р°Р» СЌС‚Рѕ РґР»СЏ СѓРґРѕР±СЃС‚РІР°
 FPS = 60
 # screen = pygame.display.set_mode(size)
 screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 size = width, height = pygame.display.get_surface().get_size()
-pygame.display.set_caption('Перемещение героя')
+pygame.display.set_caption('РџРµСЂРµРјРµС‰РµРЅРёРµ РіРµСЂРѕСЏ')
 clock = pygame.time.Clock()
 
 
@@ -24,9 +24,9 @@ def sizescreen():
 
 def load_image(name, colorkey=None):
     fullname = os.path.join('data', name)
-    # если файл не существует, то выходим
+    # РµСЃР»Рё С„Р°Р№Р» РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚, С‚Рѕ РІС‹С…РѕРґРёРј
     if not os.path.isfile(fullname):
-        print(f"Файл с изображением '{fullname}' не найден")
+        print(f"Р¤Р°Р№Р» СЃ РёР·РѕР±СЂР°Р¶РµРЅРёРµРј '{fullname}' РЅРµ РЅР°Р№РґРµРЅ")
         sys.exit()
     image = pygame.image.load(fullname)
     if colorkey is not None:
@@ -66,7 +66,7 @@ def start_screen():
                 terminate()
             elif event.type == pygame.KEYDOWN or \
                     event.type == pygame.MOUSEBUTTONDOWN:
-                return  # начинаем игру
+                return  # РЅР°С‡РёРЅР°РµРј РёРіСЂСѓ
         frame = (frame + 0.2) % 4
         image = run.subsurface(580 * int(frame), 0, 580, 45)
         screen.blit(image, ((width // 2) - 265, height - 80))
@@ -84,7 +84,7 @@ def start():
                 terminate()
             elif event.type == pygame.KEYDOWN or \
                     event.type == pygame.MOUSEBUTTONDOWN:
-                return  # начинаем игру
+                return  # РЅР°С‡РёРЅР°РµРј РёРіСЂСѓ
         frame = (frame + 0.2) % 4
         image = run.subsurface(580 * int(frame), 0, 580, 45)
         screen.blit(image, (width // 2, height - 80))
@@ -111,7 +111,7 @@ def story_screen2():
                     fon = pygame.transform.scale(load_image(a[q]), (width, height))
                     screen.blit(fon, (0, 0))
                 except Exception:
-                    return  # начинаем игру
+                    return  # РЅР°С‡РёРЅР°РµРј РёРіСЂСѓ
         pygame.display.flip()
         clock.tick(FPS)
 
@@ -137,21 +137,21 @@ def story_screen():
                     fon = pygame.transform.scale(load_image(a[q]), (width, height))
                     screen.blit(fon, (0, 0))
                 except Exception:
-                    return  # начинаем игру
+                    return  # РЅР°С‡РёРЅР°РµРј РёРіСЂСѓ
         pygame.display.flip()
         clock.tick(FPS)
 
 
 def load_level(filename):
     filename = "data/" + filename
-    # читаем уровень, убирая символы перевода строки
+    # С‡РёС‚Р°РµРј СѓСЂРѕРІРµРЅСЊ, СѓР±РёСЂР°СЏ СЃРёРјРІРѕР»С‹ РїРµСЂРµРІРѕРґР° СЃС‚СЂРѕРєРё
     with open(filename, 'r') as mapFile:
         level_map = [line.strip() for line in mapFile]
 
-    # и подсчитываем максимальную длину
+    # Рё РїРѕРґСЃС‡РёС‚С‹РІР°РµРј РјР°РєСЃРёРјР°Р»СЊРЅСѓСЋ РґР»РёРЅСѓ
     max_width = max(map(len, level_map))
 
-    # дополняем каждую строку пустыми клетками ('.')
+    # РґРѕРїРѕР»РЅСЏРµРј РєР°Р¶РґСѓСЋ СЃС‚СЂРѕРєСѓ РїСѓСЃС‚С‹РјРё РєР»РµС‚РєР°РјРё ('.')
     return list(map(lambda x: x.ljust(max_width, '.'), level_map))
 
 
@@ -171,7 +171,7 @@ tile_images = {
     '0': load_image('grass/10.png'),
     '!': load_image('grass/11.png'),
     '*': load_image('grass/12.png'),
-    '£': load_image('grass/13.png'),
+    'ВЈ': load_image('grass/13.png'),
     '$': load_image('grass/14.png'),
     '%': load_image('grass/16.png'),
     '^': load_image('grass/17.png'),
@@ -225,25 +225,25 @@ class Player(pygame.sprite.Sprite):
 
 
 class Camera:
-    # зададим начальный сдвиг камеры
+    # Р·Р°РґР°РґРёРј РЅР°С‡Р°Р»СЊРЅС‹Р№ СЃРґРІРёРі РєР°РјРµСЂС‹
     def __init__(self):
         self.dx = 0
         self.dy = 0
 
-    # сдвинуть объект obj на смещение камеры
+    # СЃРґРІРёРЅСѓС‚СЊ РѕР±СЉРµРєС‚ obj РЅР° СЃРјРµС‰РµРЅРёРµ РєР°РјРµСЂС‹
     def apply(self, obj):
         obj.rect.x += self.dx
         obj.rect.y += self.dy
 
-    # позиционировать камеру на объекте target
+    # РїРѕР·РёС†РёРѕРЅРёСЂРѕРІР°С‚СЊ РєР°РјРµСЂСѓ РЅР° РѕР±СЉРµРєС‚Рµ target
     def update(self, target):
         self.dx = -(target.rect.x + target.rect.w // 2 - width // 2)
         self.dy = -(target.rect.y + target.rect.h // 2 - height // 2)
 
 
-# основной персонаж
+# РѕСЃРЅРѕРІРЅРѕР№ РїРµСЂСЃРѕРЅР°Р¶
 player = None
-# группы спрайтов
+# РіСЂСѓРїРїС‹ СЃРїСЂР°Р№С‚РѕРІ
 all_sprites = pygame.sprite.Group()
 tiles_group = pygame.sprite.Group()
 player_group = pygame.sprite.Group()
@@ -281,7 +281,7 @@ def generate_level(level):
             elif level[y][x] == '*':
                 Tile('*', x, y)
             elif level[y][x] == '"':
-                Tile('£', x, y)
+                Tile('ВЈ', x, y)
             elif level[y][x] == ';':
                 Tile('$', x, y)
             elif level[y][x] == '%':
@@ -313,7 +313,7 @@ def generate_level(level):
                 x0, y0 = x, y
                 Tile('empty', x, y)
                 new_player = Player(x, y)
-    # вернем игрока, а также размер поля в клетках
+    # РІРµСЂРЅРµРј РёРіСЂРѕРєР°, Р° С‚Р°РєР¶Рµ СЂР°Р·РјРµСЂ РїРѕР»СЏ РІ РєР»РµС‚РєР°С…
     return new_player, x0, y0
 
 
@@ -425,7 +425,7 @@ def start_screen1():
             if not timer:
                 gameover(screen, scores, 'flappy bird')
                 return
-        # Отрисовка
+        # РћС‚СЂРёСЃРѕРІРєР°
         for bg in bges:
             screen.blit(imgBG, bg)
 
@@ -439,9 +439,9 @@ def start_screen1():
         image = imgBird.subsurface(64 * int(frame), 0, 64, 64)
         image = pygame.transform.rotate(image, -sy * 2)
         screen.blit(image, player)
-        text = font1.render('Очки: ' + str(scores), 1, 'black')
+        text = font1.render('РћС‡РєРё: ' + str(scores), 1, 'black')
         screen.blit(text, (10, 10))
-        text = font1.render('Максимальный результат: ' + str(BD('flappy bird')), 1, 'black')
+        text = font1.render('РњР°РєСЃРёРјР°Р»СЊРЅС‹Р№ СЂРµР·СѓР»СЊС‚Р°С‚: ' + str(BD('flappy bird')), 1, 'black')
         screen.blit(text, (10, height - 30))
         pygame.display.update()
         clock.tick(FPS)
@@ -449,11 +449,11 @@ def start_screen1():
 
 def BD(name):
     x = 'data/game.sqlite'
-    # Подключение к БД
+    # РџРѕРґРєР»СЋС‡РµРЅРёРµ Рє Р‘Р”
     con = sqlite3.connect(x)
-    # Создание курсора
+    # РЎРѕР·РґР°РЅРёРµ РєСѓСЂСЃРѕСЂР°
     cur = con.cursor()
-    # Выполнение запроса и получение всех результатов
+    # Р’С‹РїРѕР»РЅРµРЅРёРµ Р·Р°РїСЂРѕСЃР° Рё РїРѕР»СѓС‡РµРЅРёРµ РІСЃРµС… СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ
     result = cur.execute("""SELECT record FROM spisok
                 WHERE name = '""" + str(name) + """'""").fetchall()
     con.close()
@@ -584,7 +584,7 @@ def start_screen2(q):
                         x = 'data/game.sqlite'
                         con = sqlite3.connect(x)
                         cur = con.cursor()
-                        # Выполнение запроса и получение всех результатов
+                        # Р’С‹РїРѕР»РЅРµРЅРёРµ Р·Р°РїСЂРѕСЃР° Рё РїРѕР»СѓС‡РµРЅРёРµ РІСЃРµС… СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ
                         cur.execute("""UPDATE spisok
                                     SET record = '""" + str(score) + """' """ +
                                     """WHERE name = '""" + str('dino') + """'""").fetchall()
@@ -644,7 +644,7 @@ def gameover(screen2, score, name):
         x = 'data/game.sqlite'
         con = sqlite3.connect(x)
         cur = con.cursor()
-        # Выполнение запроса и получение всех результатов
+        # Р’С‹РїРѕР»РЅРµРЅРёРµ Р·Р°РїСЂРѕСЃР° Рё РїРѕР»СѓС‡РµРЅРёРµ РІСЃРµС… СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ
         cur.execute("""UPDATE spisok
                     SET record = '""" + str(score) + """' """ +
                     """WHERE name = '""" + str(name) + """'""").fetchall()
@@ -708,7 +708,7 @@ def final(wid, hei):
         pygame.display.flip()
         clock.tick(FPS)
 
-
+music = pygame.mixer.Sound('data/music.mp3')
 q = False
 start_screen()
 story_screen()
@@ -717,13 +717,14 @@ player, player_x, player_y = generate_level(map)
 running = True
 b = ['b', 'a', '#', 'c', 'd', 'g', 'x', 'i']
 pygame.mouse.set_visible(False)
+music.play()
 while running:
     clock.tick(20)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-            if int(BD('flappy bird')) > 30 and (map[player_y][player_x - 1] == 'b' or
+            if int(BD('flappy bird')) > -1 and (map[player_y][player_x - 1] == 'b' or
                                                 map[player_y][player_x + 1] == 'b' or map[player_y - 1][
                                                     player_x] == 'b' or map[player_y + 1][player_x] == 'b'):
                 start_screen2(False)
@@ -731,17 +732,17 @@ while running:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if map[player_y][player_x - 1] == 'a' or map[player_y][player_x + 1] == 'a' or \
                     map[player_y - 1][player_x] == 'a' or map[player_y + 1][player_x] == 'a':
-                if q or int(BD('dino')) > 0:
+                if q or int(BD('dino')) > -1:
                     start_screen1()
                     sizescreen()
             elif map[player_y][player_x - 1] == 'b' or map[player_y][player_x + 1] == 'b' or \
                     map[player_y - 1][player_x] == 'b' or map[player_y + 1][player_x] == 'b':
-                if int(BD('flappy bird')) > 30:
+                if int(BD('flappy bird')) > -1:
                     start_screen2(True)
                     sizescreen()
             elif map[player_y][player_x - 1] == 'g' or map[player_y][player_x + 1] == 'g' or \
                     map[player_y - 1][player_x] == 'g' or map[player_y + 1][player_x] == 'g':
-                if int(BD('flappy bird')) <= 30:
+                if int(BD('flappy bird')) <= 100000:
                     q = True
                     story_screen2()
     pygame.time.delay(20)

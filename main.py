@@ -731,7 +731,7 @@ while running:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if map[player_y][player_x - 1] == 'a' or map[player_y][player_x + 1] == 'a' or \
                     map[player_y - 1][player_x] == 'a' or map[player_y + 1][player_x] == 'a':
-                if q or int(BD('dino')) > 0:
+                if q or int(BD('flappy bird')) > 50:
                     start_screen1()
                     sizescreen()
             elif map[player_y][player_x - 1] == 'b' or map[player_y][player_x + 1] == 'b' or \
@@ -774,3 +774,4 @@ while running:
     player.ugl(screen)
     pygame.display.update()
     clock.tick(60)
+
